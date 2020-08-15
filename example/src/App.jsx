@@ -215,6 +215,31 @@ function Styling() {
   )
 }
 
+function Installation() {
+  return (
+    <section>
+      <h2>Installation and Usage</h2>
+      <p>Honestly, it's as simple as one two three.</p>
+      <SyntaxHighlighter language='bash' style={styles.a11yDark}>
+        {`yarn add react-alert-async`}
+      </SyntaxHighlighter>
+      <p>And then in your little index file you just add the Provider</p>
+      <SyntaxHighlighter language='javascript' style={styles.a11yDark}>
+        {`import AlertProvider, {alert, confirm, prompt} from 'react-alert-async';
+
+function App() {
+  return (
+    <>
+      <AlertProvider />
+      <button onClick={()=>alert("Yay, it's an alert", {duration: 2000, title: "Custom Title"})} />
+    </>
+  )
+}`}
+      </SyntaxHighlighter>
+    </section>
+  )
+}
+
 const App = () => {
   const [state, setState] = useState("Nothing's been prompted")
   return (
@@ -229,6 +254,7 @@ const App = () => {
           defaulting to the browsers ugly implementations
         </h2>
         <div className='sections'>
+          <Installation />
           <Alert />
           <Confirm />
           <Prompt />
