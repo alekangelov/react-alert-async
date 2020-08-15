@@ -177,13 +177,53 @@ function Footer() {
   )
 }
 
+function Styling() {
+  return (
+    <section>
+      <h2>Styling</h2>
+      <p>
+        It's pretty easy to style the components, they follow simple naming
+        structures and it's encouraged to write your own styles
+      </p>
+      <SyntaxHighlighter language='css' style={styles.a11yDark}>
+        {`.alert {
+  /* this is the background of the alert */
+  &-inner {
+    /* body wrapper of the alert */
+  }
+  &-title {
+    /* title of the alert */
+  }
+  &-text {
+    /* text describer of the alert */
+  }
+  &-input {
+    /* the prompt input field */
+  }
+  &-buttons {
+    /* button wrapper of the alert */
+    &_ok {
+      /* ok button of the alert */
+    }
+    &_cancel {
+      /* cancel button of the alert */
+    }
+  }
+}`}
+      </SyntaxHighlighter>
+    </section>
+  )
+}
+
 const App = () => {
   const [state, setState] = useState("Nothing's been prompted")
   return (
     <>
       <AlertProvider />
       <div className='wrapper'>
-        <h1>React-Alert-Async</h1>
+        <h1>
+          <span role='icon'>✨</span> React-Alert-Async
+        </h1>
         <h2>
           A simple way of managing your alerts, prompts and confirms without
           defaulting to the browsers ugly implementations
@@ -192,6 +232,7 @@ const App = () => {
           <Alert />
           <Confirm />
           <Prompt />
+          <Styling />
         </div>
         <Footer />
       </div>
