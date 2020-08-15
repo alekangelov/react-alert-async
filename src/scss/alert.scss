@@ -1,0 +1,108 @@
+#alertProvider {
+  * {
+    box-sizing: border-box;
+  }
+  .alert {
+    position: fixed;
+    &-inner {
+      border-radius: 10px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      max-width: 90%;
+      min-width: 600px;
+      padding: 2rem;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      box-shadow: 0 15px 40px -20px rgba(black, 0.5);
+      h4 {
+        color: black;
+        font-size: 2rem;
+        margin-top: 0;
+        margin-bottom: 1rem;
+      }
+      p {
+        color: black;
+        font-size: 16px;
+      }
+    }
+  }
+
+  @keyframes baseAnimation {
+    from {
+      transform: translate(-50%, -25%);
+      opacity: 0;
+    }
+    to {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
+  }
+  @keyframes baseAnimationOut {
+    to {
+      transform: translate(-50%, -25%);
+      opacity: 0;
+    }
+    from {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
+  }
+  $timingFunction: cubic-bezier(0.65, 0, 0, 0.65);
+
+  .animationIn {
+    animation: baseAnimation 0.5s $timingFunction;
+  }
+  .animationOut {
+    animation: baseAnimationOut 0.5s $timingFunction;
+  }
+  .animationHold {
+    animation: none;
+  }
+
+  .buttons {
+    display: flex;
+    button {
+      flex: 1 0 45%;
+      padding: 0.5rem 1rem;
+      background: rgb(36, 36, 36);
+      color: black;
+      border-radius: 10px;
+      padding: 1rem 2rem;
+      border: 0;
+      color: white;
+      font-size: 16px;
+      font-weight: 900;
+      outline: none;
+      &:active {
+        border: 1px solid rgb(32, 65, 136);
+      }
+      &.ok {
+        background: rgb(0, 132, 255);
+      }
+      &.cancel {
+        background: rgb(216, 216, 216);
+        color: black;
+        font-weight: 600;
+        margin-left: 1rem;
+      }
+    }
+  }
+}
+
+.prompt {
+  margin-bottom: 1rem;
+  display: flex;
+  .input {
+    padding: 1rem;
+    font-size: 1rem;
+    background: white;
+    outline: none;
+    border-radius: 10px;
+    border: 1px solid rgb(0, 132, 255);
+    flex: 1 0 100%;
+    box-sizing: border-box;
+  }
+}

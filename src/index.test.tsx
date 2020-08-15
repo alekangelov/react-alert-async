@@ -1,7 +1,7 @@
-import { ExampleComponent } from '.'
+import AlertProvider from './alertSystem/AlertProvider'
 
-describe('ExampleComponent', () => {
+describe('AlertProvider', () => {
   it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
+    expect(AlertProvider).toBeTruthy()
   })
 })

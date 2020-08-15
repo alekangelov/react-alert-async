@@ -1,10 +1,6 @@
-import * as React from 'react'
-import styles from './styles.module.css'
+import AlertProvider from './alertSystem/AlertProvider'
+import { alert, confirm, prompt } from './alertSystem/Alert'
 
-interface Props {
-  text: string
-}
+export default AlertProvider
 
-export const ExampleComponent = ({ text }: Props) => {
-  return <div className={styles.test}>Example Component: {text}</div>
-}
+export { alert, confirm, prompt }
