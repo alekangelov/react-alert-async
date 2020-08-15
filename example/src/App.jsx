@@ -183,7 +183,7 @@ function Styling() {
       <h2>Styling</h2>
       <p>
         It's pretty easy to style the components, they follow simple naming
-        structures and it's encouraged to write your own styles
+        structures and it's encouraged to write your own styles.
       </p>
       <SyntaxHighlighter language='css' style={styles.a11yDark}>
         {`.alert {
@@ -226,6 +226,7 @@ function Installation() {
       <p>And then in your little index file you just add the Provider</p>
       <SyntaxHighlighter language='javascript' style={styles.a11yDark}>
         {`import AlertProvider, {alert, confirm, prompt} from 'react-alert-async';
+import 'react-alert-async/dist/index.css'
 
 function App() {
   return (
