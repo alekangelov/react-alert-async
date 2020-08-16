@@ -164,10 +164,10 @@ function Footer() {
       </div>
       <ul className='second'>
         <li>
-          <a href='#'>NPM</a>
+          <a href='http://npmjs.com/package/react-alert-async'>NPM</a>
         </li>
         <li>
-          <a href='#'>GITHUB</a>
+          <a href='https://github.com/alekangelov/react-alert-async/'>GITHUB</a>
         </li>
         <li>
           <a href='https://alekangelov.com'>WEBSITE</a>
