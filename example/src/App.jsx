@@ -248,7 +248,10 @@ const App = () => {
       <AlertProvider />
       <div className='wrapper'>
         <h1>
-          <span role='icon'>✨</span> React-Alert-Async
+          <span role='icon'>
+            <img src={require('./icon.png')} />
+          </span>{' '}
+          React Alert Async
         </h1>
         <h2>
           A simple way of managing your alerts, prompts and confirms without
