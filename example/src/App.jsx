@@ -11,7 +11,7 @@ function Alert() {
   const codestring = `async () => {
     try {
       const x = await alert('Something')
-      console.log(x)
+      
       setState('Yay, so you read all that')
     } catch (e) {
       // won't actually get here
@@ -32,10 +32,9 @@ function Alert() {
               const x = await alert('Idk write something meaningful here', {
                 duration: 500
               })
-              console.log(x)
+
               setState('Yay, so you read all that')
             } catch (e) {
-              console.log('here2')
               setState("Oh, we're sorry about that :(")
             }
           }}
@@ -58,6 +57,165 @@ function Alert() {
     </section>
   )
 }
+
+function AlertWithCustomBody() {
+  const [state, setState] = useState("Nothing's been alerted")
+  const [code, setCode] = useState(false)
+  const codestring = `<button
+  onClick={async () => {
+    try {
+      const x = await alert(
+        () => (
+          <div>
+            <h1>I'm the title?</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Esse, id sunt nulla nam praesentium necessitatibus
+              voluptate consequatur, nesciunt ut cupiditate distinctio
+              natus dolorem debitis adipisci non deleniti dolores rem
+              vitae.
+            </p>
+          </div>
+        ),
+        {
+          duration: 500
+        }
+      )
+
+      setState('Yay, so you read all that')
+    } catch (e) {
+      setState("Oh, we're sorry about that :(")
+    }
+  }}
+>
+  Make a Funcitonal Alert
+</button>
+<button
+  onClick={async () => {
+    try {
+      const x = await alert(
+        class extends React.Component {
+          render() {
+            return (
+              <div>
+                <h1>I'm the title?</h1>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur, adipisicing
+                  elit. Esse, id sunt nulla nam praesentium
+                  necessitatibus voluptate consequatur, nesciunt ut
+                  cupiditate distinctio natus dolorem debitis adipisci
+                  non deleniti dolores rem vitae.
+                </p>
+              </div>
+            )
+          }
+        },
+        {
+          duration: 500
+        }
+      )
+
+      setState('Yay, so you read all that')
+    } catch (e) {
+      setState("Oh, we're sorry about that :(")
+    }
+  }}
+>
+  Make a Class Alert
+</button>`
+  return (
+    <section>
+      <h2>Functional/Class Alerts</h2>
+      <p>
+        If you pass in a react function or a class instead of text, the whole
+        body of the component including the title will get replaced by the
+        function/class. This allows you to write better alerts/confirms/prompts
+        while getting all the benefits that React offer you. You can do this
+        with the other alerts, not just the alert().
+      </p>
+      <div className='state'>
+        <p>{state}</p>
+      </div>
+      <div className='buttons'>
+        <button
+          onClick={async () => {
+            try {
+              const x = await alert(
+                () => (
+                  <div>
+                    <h1>I'm the title?</h1>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Esse, id sunt nulla nam praesentium necessitatibus
+                      voluptate consequatur, nesciunt ut cupiditate distinctio
+                      natus dolorem debitis adipisci non deleniti dolores rem
+                      vitae.
+                    </p>
+                  </div>
+                ),
+                {
+                  duration: 500
+                }
+              )
+
+              setState('Yay, so you read all that')
+            } catch (e) {
+              setState("Oh, we're sorry about that :(")
+            }
+          }}
+        >
+          Make a Funcitonal Alert
+        </button>
+        <button
+          onClick={async () => {
+            try {
+              const x = await alert(
+                class extends React.Component {
+                  render() {
+                    return (
+                      <div>
+                        <h1>I'm the title?</h1>
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur, adipisicing
+                          elit. Esse, id sunt nulla nam praesentium
+                          necessitatibus voluptate consequatur, nesciunt ut
+                          cupiditate distinctio natus dolorem debitis adipisci
+                          non deleniti dolores rem vitae.
+                        </p>
+                      </div>
+                    )
+                  }
+                },
+                {
+                  duration: 500
+                }
+              )
+
+              setState('Yay, so you read all that')
+            } catch (e) {
+              setState("Oh, we're sorry about that :(")
+            }
+          }}
+        >
+          Make a Class Alert
+        </button>
+        <button onClick={() => setCode((code) => !code)}>
+          {code ? 'Hide' : 'Show'} Code
+        </button>
+      </div>
+      {code && (
+        <SyntaxHighlighter
+          showLineNumbers
+          style={styles.a11yDark}
+          language='javascript'
+        >
+          {codestring}
+        </SyntaxHighlighter>
+      )}
+    </section>
+  )
+}
+
 function Prompt() {
   const [state, setState] = useState("Nothing's been prompted")
   const [code, setCode] = useState(false)
@@ -260,6 +418,7 @@ const App = () => {
         <div className='sections'>
           <Installation />
           <Alert />
+          <AlertWithCustomBody />
           <Confirm />
           <Prompt />
           <Styling />

@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
+import React, {
+  useState,
+  FunctionComponent,
+  ComponentClass,
+  useCallback
+} from 'react'
 const { render, unmountComponentAtNode } = require('react-dom')
 import styles from '../scss/alert.scss'
 interface AlertProps {
-  text: string
-  cancellable?: boolean
+  text: string | FunctionComponent | ComponentClass
   onClick: (value: boolean | string) => void
   className: string
   duration: number
@@ -20,8 +24,14 @@ interface Options {
 const CustomAlert = (props: AlertProps) => {
   const [animation, setAnimation] = useState<any>(styles.animationIn)
   const [promptState, setPrompt] = useState('')
-  const handleClick = (value: boolean) => {
+  const close = useCallback(() => {
     const parent = document.getElementById(styles.alertProvider) as HTMLElement
+    setAnimation(styles.animationOut)
+    setTimeout(() => {
+      unmountComponentAtNode(parent)
+    }, (props.duration || 500) - 50)
+  }, [])
+  const handleClick = (value: boolean) => {
     if (props.prompt) {
       if (value) {
         props.onClick(promptState)
@@ -31,42 +41,58 @@ const CustomAlert = (props: AlertProps) => {
     } else {
       props.onClick(value)
     }
-    setAnimation(styles.animationOut)
-    setTimeout(() => {
-      unmountComponentAtNode(parent)
-    }, (props.duration || 500) - 50)
+    close()
+  }
+  const eventListener = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      handleClick(false)
+      return close()
+    }
+    if (e.key === 'Enter') {
+      handleClick(true)
+      return close()
+    }
   }
   React.useEffect(() => {
+    window.addEventListener('keyup', eventListener)
     setTimeout(() => setAnimation(styles.animationHold), props.duration || 500)
+    return () => {
+      window.removeEventListener('keyup', eventListener)
+    }
   }, [])
-  console.log(props)
   return (
     <div className={[styles.alert, 'alert'].join(' ')}>
       <div
         style={{ animationDuration: `${(props.duration || 500) / 1000}s` }}
         className={[styles['alert-inner'], 'alert-inner', animation].join(' ')}
       >
-        {props.title ? (
-          <h4 className='alert-title'>{props.title}</h4>
+        {typeof props.text === 'function' ? (
+          <props.text />
         ) : (
-          <h4 className='alert-title'>
-            <React.Fragment>
-              {props.prompt && 'Please fill in the input'}
-              {props.confirm && 'Please confirm'}
-              {!props.prompt && !props.confirm && 'Alert'}
-            </React.Fragment>
-          </h4>
-        )}
-        <p className='alert-text'>{props.text}</p>
-        {props.prompt && (
-          <div className={styles.prompt}>
-            <input
-              value={promptState}
-              onChange={(e) => setPrompt(e.target.value)}
-              className={[styles.input, 'alert-input'].join(' ')}
-              type='text'
-            />
-          </div>
+          <React.Fragment>
+            {props.title ? (
+              <h4 className='alert-title'>{props.title}</h4>
+            ) : (
+              <h4 className='alert-title'>
+                <React.Fragment>
+                  {props.prompt && 'Please fill in the input'}
+                  {props.confirm && 'Please confirm'}
+                  {!props.prompt && !props.confirm && 'Alert'}
+                </React.Fragment>
+              </h4>
+            )}
+            <p className='alert-text'>{props.text}</p>
+            {props.prompt && (
+              <div className={styles.prompt}>
+                <input
+                  value={promptState}
+                  onChange={(e) => setPrompt(e.target.value)}
+                  className={[styles.input, 'alert-input'].join(' ')}
+                  type='text'
+                />
+              </div>
+            )}
+          </React.Fragment>
         )}
         <div className={[styles.buttons, 'alert-buttons'].join(' ')}>
           <button
@@ -89,7 +115,10 @@ const CustomAlert = (props: AlertProps) => {
   )
 }
 
-export async function alert(text: string, options: Options) {
+export async function alert(
+  text: string | FunctionComponent | ComponentClass,
+  options: Options
+) {
   const parent = document.getElementById(styles.alertProvider) as HTMLElement
   return new Promise((resolve, reject) => {
     render(
