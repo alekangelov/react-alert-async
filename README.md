@@ -4,6 +4,8 @@
 
 [![NPM](https://img.shields.io/npm/v/react-alert-async.svg)](https://www.npmjs.com/package/react-alert-async) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+![The React Alert Async Logo](https://i.imgur.com/ywdToxR.jpg)
+
 ## Installation
 
 ```bash

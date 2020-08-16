@@ -1,7 +1,7 @@
 {
   "name": "react-alert-async",
   "version": "1.0.0",
-  "description": "A simple to use Alert/Confirmation system for React. On the server or the client.",
+  "description": "A simple to use Alert/Confirmation/Prompt system for React. On the server or the client.",
   "author": "alekangelov",
   "license": "MIT",
   "repository": "alekangelov/react-alert-async",
