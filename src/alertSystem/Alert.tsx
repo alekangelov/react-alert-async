@@ -31,26 +31,31 @@ const CustomAlert = (props: AlertProps) => {
       unmountComponentAtNode(parent)
     }, (props.duration || 500) - 50)
   }, [])
-  const handleClick = (value: boolean) => {
-    if (props.prompt) {
-      if (value) {
-        props.onClick(promptState)
+  const handleClick = useCallback(
+    (value: boolean) => {
+      console.log(promptState)
+      if (props.prompt) {
+        setPrompt((promptState) => {
+          if (value) {
+            props.onClick(promptState)
+          } else {
+            props.onClick(value)
+          }
+          return promptState
+        })
       } else {
         props.onClick(value)
       }
-    } else {
-      props.onClick(value)
-    }
-    close()
-  }
+      return close()
+    },
+    [promptState]
+  )
   const eventListener = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
-      handleClick(false)
-      return close()
+      handleClick(props.confirm || props.prompt ? false : true)
     }
     if (e.key === 'Enter') {
       handleClick(true)
-      return close()
     }
   }
   React.useEffect(() => {
@@ -86,6 +91,7 @@ const CustomAlert = (props: AlertProps) => {
               <div className={styles.prompt}>
                 <input
                   value={promptState}
+                  name='prompt'
                   onChange={(e) => setPrompt(e.target.value)}
                   className={[styles.input, 'alert-input'].join(' ')}
                   type='text'
