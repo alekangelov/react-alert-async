@@ -1,6 +1,6 @@
 {
   "name": "react-alert-async",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A simple to use Alert/Confirmation/Prompt system for React. On the server or the client.",
   "author": "Alek Angelov <alek.angelov.sk@gmail.com> (https://alekangelov.com)",
   "license": "MIT",
@@ -56,15 +56,14 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",
-    "typescript": "^3.7.5"
-  },
-  "files": [
-    "dist"
-  ],
-  "dependencies": {
+    "typescript": "^3.7.5",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-postcss": "^3.1.5",
     "sass": "^1.26.10"
-  }
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {}
 }

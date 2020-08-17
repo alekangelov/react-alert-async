@@ -121,9 +121,10 @@ const CustomAlert = (props: AlertProps) => {
   )
 }
 
-export async function alert(
+async function alertHelper(
   text: string | FunctionComponent | ComponentClass,
-  options: Options
+  options: Options,
+  sides: { prompt?: boolean; alert?: boolean; confirm?: boolean }
 ) {
   const parent = document.getElementById(styles.alertProvider) as HTMLElement
   return new Promise((resolve, reject) => {
@@ -131,38 +132,23 @@ export async function alert(
       <CustomAlert
         onClick={(e) => (e ? resolve(e) : reject(e))}
         text={text}
-        prompt={false}
+        {...sides}
         {...options}
       />,
       parent
     )
   })
+}
+
+export async function alert(
+  text: string | FunctionComponent | ComponentClass,
+  options: Options
+) {
+  return await alertHelper(text, options, { alert: true })
 }
 export async function confirm(text: string, options: Options) {
-  const parent = document.getElementById(styles.alertProvider) as HTMLElement
-  return new Promise((resolve, reject) => {
-    render(
-      <CustomAlert
-        onClick={(e) => (e ? resolve(e) : reject(e))}
-        text={text}
-        confirm={true}
-        {...options}
-      />,
-      parent
-    )
-  })
+  return await alertHelper(text, options, { confirm: true })
 }
 export async function prompt(text: string, options: Options) {
-  const parent = document.getElementById(styles.alertProvider) as HTMLElement
-  return new Promise((resolve, reject) => {
-    render(
-      <CustomAlert
-        onClick={(e) => (e ? resolve(e) : reject())}
-        text={text}
-        prompt={true}
-        {...options}
-      />,
-      parent
-    )
-  })
+  return await alertHelper(text, options, { prompt: true })
 }

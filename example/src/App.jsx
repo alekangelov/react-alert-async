@@ -400,14 +400,13 @@ function App() {
 }
 
 const App = () => {
-  const [state, setState] = useState("Nothing's been prompted")
   return (
     <>
       <AlertProvider />
       <div className='wrapper'>
         <h1>
-          <span role='icon'>
-            <img src={require('./icon.png')} />
+          <span role='icon' aria-roledescription='the icon'>
+            <img src={require('./icon.png')} alt='the project icon' />
           </span>{' '}
           React Alert Async
         </h1>

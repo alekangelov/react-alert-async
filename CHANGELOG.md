@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [RELEASED]
 
+## [1.1.1] - 2020-08-17
+
+### Changed
+
+- Made the whole thing use one alert helper. It's a developer thing, not a user thing. Shouldn't change much.
+
+### Fixed
+
+- Dependencies
+
 ## [1.1.0] - 2020-08-17
 
 ### Added
@@ -18,10 +28,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Updated props for better intellisense
-
-### Removed
-
-- Section about "changelog" vs "CHANGELOG".
 
 ### NOTES
 
