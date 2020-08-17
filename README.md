@@ -156,6 +156,73 @@ function Confirm() {
 }
 ```
 
+### Custom Body
+
+```jsx
+<button
+  onClick={async () => {
+    try {
+      const x = await alert(
+        () => (
+          <div>
+            <h1>I'm the title?</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Esse, id sunt nulla nam praesentium necessitatibus
+              voluptate consequatur, nesciunt ut cupiditate distinctio
+              natus dolorem debitis adipisci non deleniti dolores rem
+              vitae.
+            </p>
+          </div>
+        ),
+        {
+          duration: 500
+        }
+      )
+
+      setState('Yay, so you read all that')
+    } catch (e) {
+      setState("Oh, we're sorry about that :(")
+    }
+  }}
+>
+  Make a Funcitonal Alert
+</button>
+<button
+  onClick={async () => {
+    try {
+      const x = await alert(
+        class extends React.Component {
+          render() {
+            return (
+              <div>
+                <h1>I'm the title?</h1>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur, adipisicing
+                  elit. Esse, id sunt nulla nam praesentium
+                  necessitatibus voluptate consequatur, nesciunt ut
+                  cupiditate distinctio natus dolorem debitis adipisci
+                  non deleniti dolores rem vitae.
+                </p>
+              </div>
+            )
+          }
+        },
+        {
+          duration: 500
+        }
+      )
+
+      setState('Yay, so you read all that')
+    } catch (e) {
+      setState("Oh, we're sorry about that :(")
+    }
+  }}
+>
+  Make a Class Alert
+</button>
+```
+
 ## License
 
 MIT © [alekangelov](https://github.com/alekangelov)
