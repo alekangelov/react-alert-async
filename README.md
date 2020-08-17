@@ -223,6 +223,10 @@ function Confirm() {
 </button>
 ```
 
+## TODO
+
+You can follow the project's board here: https://github.com/alekangelov/react-alert-async/projects/1
+
 ## License
 
 MIT © [alekangelov](https://github.com/alekangelov)
