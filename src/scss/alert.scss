@@ -4,6 +4,7 @@
   }
   .alert {
     position: fixed;
+    z-index: 1000;
     &-inner {
       border-radius: 10px;
       position: fixed;
