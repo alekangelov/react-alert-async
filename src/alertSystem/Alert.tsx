@@ -7,16 +7,16 @@ import React, {
 const { render, unmountComponentAtNode } = require('react-dom')
 import styles from '../scss/alert.scss'
 interface AlertProps {
-  text: string | FunctionComponent | ComponentClass
+  text?: string | FunctionComponent | ComponentClass
   onClick: (value: boolean | string) => void
-  className: string
-  duration: number
+  className?: string
+  duration?: number
   prompt?: boolean
   confirm?: boolean
   title?: string
 }
 interface Options {
-  className: string
+  className?: string
   title?: string
   duration: number
 }
