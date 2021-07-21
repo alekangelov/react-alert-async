@@ -18,7 +18,7 @@ interface AlertProps {
 interface Options {
   className?: string
   title?: string
-  duration: number
+  duration?: number
 }
 
 const CustomAlert = (props: AlertProps) => {
@@ -142,13 +142,13 @@ async function alertHelper(
 
 export async function alert(
   text: string | FunctionComponent | ComponentClass,
-  options: Options
+  options?: Options
 ) {
-  return await alertHelper(text, options, { alert: true })
+  return await alertHelper(text, options || {}, { alert: true })
 }
-export async function confirm(text: string, options: Options) {
-  return await alertHelper(text, options, { confirm: true })
+export async function confirm(text: string, options?: Options) {
+  return await alertHelper(text, options || {}, { confirm: true })
 }
-export async function prompt(text: string, options: Options) {
-  return await alertHelper(text, options, { prompt: true })
+export async function prompt(text: string, options?: Options) {
+  return await alertHelper(text, options || {}, { prompt: true })
 }
