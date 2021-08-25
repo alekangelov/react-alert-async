@@ -14,15 +14,15 @@ interface AlertProps {
   prompt?: boolean
   confirm?: boolean
   title?: string
-  okLabel?: number
-  cancelLabel?: number
+  okLabel?: string
+  cancelLabel?: string
 }
 interface Options {
   className?: string
   title?: string
   duration?: number
-  okLabel?: number
-  cancelLabel?: number
+  okLabel?: string
+  cancelLabel?: string
 }
 
 const CustomAlert = (props: AlertProps) => {
