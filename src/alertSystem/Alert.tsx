@@ -14,11 +14,15 @@ interface AlertProps {
   prompt?: boolean
   confirm?: boolean
   title?: string
+  okLabel?: string
+  cancelLabel?: string
 }
 interface Options {
   className?: string
   title?: string
   duration?: number
+  okLabel?: string
+  cancelLabel?: string
 }
 
 const CustomAlert = (props: AlertProps) => {
@@ -105,14 +109,14 @@ const CustomAlert = (props: AlertProps) => {
             className={[styles.ok, 'alert-buttons_ok'].join(' ')}
             onClick={() => handleClick(true)}
           >
-            OK
+            {props.okLabel ?? 'OK'}
           </button>
           {(props.confirm || props.prompt) && (
             <button
               className={[styles.cancel, 'alert-buttons_cancel'].join(' ')}
               onClick={() => handleClick(false)}
             >
-              Cancel
+              {props.cancelLabel ?? 'Cancel'}
             </button>
           )}
         </div>
