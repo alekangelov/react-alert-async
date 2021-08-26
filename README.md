@@ -127,7 +127,7 @@ function Prompt() {
 }
 ```
 
-### Confirm
+### Confirm with custom buttons
 
 ```jsx
 function Confirm() {
@@ -141,7 +141,10 @@ function Confirm() {
         <button
           onClick={async () => {
             try {
-              await confirm("Read some of the things we've written")
+              await confirm("Read some of the things we've written", {
+                okLabel: "I'm custom 🤯",
+                cancelLabel: "I'm custom too 😎"
+              })
               setState('Yay, so you read all that')
             } catch (e) {
               setState("Oh, we're sorry about that :(")

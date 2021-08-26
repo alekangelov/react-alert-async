@@ -271,7 +271,7 @@ function Confirm() {
   const [code, setCode] = useState(false)
   const codestring = `async () => {
     try {
-      await confirm("Read some of the things we've written")
+      await confirm("Read some of the things we've written", {okLabel: "I'm custom 😎", cancelLabel: "I'm custom 😭"})
       setState('Yay, so you read all that')
     } catch (e) {
       setState("Oh, we're sorry about that :(")
